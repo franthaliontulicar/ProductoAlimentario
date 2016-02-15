@@ -66,5 +66,11 @@ public class StockManager
      */
     public void printProductDetails()
     {
+        for(Product producto: stock){
+            producto.toString();
+        }
+        
+        
+        
     }
 }
