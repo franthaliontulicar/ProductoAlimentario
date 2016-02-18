@@ -55,7 +55,7 @@ public class StockManager
     {
         String name = "";
         boolean  encontrado = false;
-        Product producto = new Product(id,name);
+        Product producto = null;
         for(Product product :stock){
             while(id == producto.getID()){
                 encontrado = true;
