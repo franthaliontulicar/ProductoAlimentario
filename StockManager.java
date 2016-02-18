@@ -37,6 +37,13 @@ public class StockManager
      */
     public void delivery(int id, int amount)
     {
+        if(findProduct(id) != null){
+            findProduct(id).increaseQuantity(amount);
+        
+        }
+        else{
+            System.out.println("El id indicado no pertenece a ningun producto");
+        }
     }
     
     /**
@@ -47,13 +54,14 @@ public class StockManager
     public Product findProduct(int id)
     {
         String name = "";
+        boolean  encontrado = false;
         Product producto = new Product(id,name);
-        for(int index =0; index < stock.size(); index++){
-            if(index == producto.getID()){
-                producto.toString();
-            
+        for(Product product :stock){
+            while(id == producto.getID()){
+                encontrado = true;
+                producto = product;
             }
-            index++;
+           
         }
        
         return producto;
@@ -68,7 +76,14 @@ public class StockManager
      */
     public int numberInStock(int id)
     {
-        return 0;
+        int numeroDeProductos = 0;
+        for(Product producto: stock){
+           if(id != producto.getID()){
+                numeroDeProductos++;
+            }
+           
+        }
+        return numeroDeProductos;
     }
 
     /**
