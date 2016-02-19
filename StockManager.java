@@ -26,9 +26,16 @@ public class StockManager
      */
     public void addProduct(Product item)
     {
-        stock.add(item);
-    }
+        for(Product producto:stock){
+            if(producto != item){
+                stock.add(item);
+            }
+            else{
+                System.out.println("El producto solicitado ya existe ");
+            }
+        }
 
+    }
     /**
      * Receive a delivery of a particular product.
      * Increase the quantity of the product by the given amount.
@@ -51,9 +58,8 @@ public class StockManager
      * @return The identified product, or null if there is none
      *         with a matching ID.
      */
-    
-    
-     public void underGivenNumberInStock(int numStock){
+
+    public void underGivenNumberInStock(int numStock){
         for(Product producto:stock){
             if(producto.getQuantity() < numStock){
                 System.out.println(producto);
@@ -61,10 +67,7 @@ public class StockManager
 
         }
 
-    
     }
-    
-    
     
     public Product findProduct(int id)
     {
@@ -80,10 +83,27 @@ public class StockManager
             index ++;
         }
 
-       
         return producto;
     }
 
+    
+    public Product findProduct(String name){
+        int index = 0;
+        boolean  encontrado = false;
+        Product producto = null;
+
+        while(!encontrado && index < stock.size()){
+            if(stock.get(index).getName() == name){
+                producto = stock.get(index);
+                encontrado = true;
+            }
+            index ++;
+        }
+
+        return producto;
+    
+    }
+    
     /**
      * Locate a product with the given ID, and return how
      * many of this item are in stock. If the ID does not
@@ -112,8 +132,6 @@ public class StockManager
             System.out.println(producto.toString());
         }
 
-        
     }
-
    
 }
