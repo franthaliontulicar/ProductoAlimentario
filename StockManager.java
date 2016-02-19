@@ -28,7 +28,7 @@ public class StockManager
     {
         stock.add(item);
     }
-    
+
     /**
      * Receive a delivery of a particular product.
      * Increase the quantity of the product by the given amount.
@@ -39,34 +39,51 @@ public class StockManager
     {
         if(findProduct(id) != null){
             findProduct(id).increaseQuantity(amount);
-        
+
         }
         else{
             System.out.println("El id indicado no pertenece a ningun producto");
         }
     }
-    
+
     /**
      * Try to find a product in the stock with the given id.
      * @return The identified product, or null if there is none
      *         with a matching ID.
      */
+    
+    
+     public void underGivenNumberInStock(int numStock){
+        for(Product producto:stock){
+            if(producto.getQuantity() < numStock){
+                System.out.println(producto);
+            }
+
+        }
+
+    
+    }
+    
+    
+    
     public Product findProduct(int id)
     {
-        String name = "";
+        int index = 0;
         boolean  encontrado = false;
         Product producto = null;
-        for(Product product :stock){
-            while(id == producto.getID()){
+
+        while(!encontrado && index < stock.size()){
+            if(stock.get(index).getID() == id){
+                producto = stock.get(index);
                 encontrado = true;
-                producto = product;
             }
-           
+            index ++;
         }
+
        
         return producto;
     }
-    
+
     /**
      * Locate a product with the given ID, and return how
      * many of this item are in stock. If the ID does not
@@ -78,10 +95,10 @@ public class StockManager
     {
         int numeroDeProductos = 0;
         for(Product producto: stock){
-           if(id != producto.getID()){
+            if(id != producto.getID()){
                 numeroDeProductos++;
             }
-           
+
         }
         return numeroDeProductos;
     }
@@ -94,8 +111,9 @@ public class StockManager
         for(Product producto: stock){
             System.out.println(producto.toString());
         }
-        
-        
+
         
     }
+
+   
 }
