@@ -26,13 +26,11 @@ public class StockManager
      */
     public void addProduct(Product item)
     {
-        for(Product producto:stock){
-            if(producto != item){
-                stock.add(item);
-            }
-            else{
-                System.out.println("El producto solicitado ya existe ");
-            }
+        if (findProduct(item.getID()) == null){
+            stock.add(item);
+        }
+        else{
+            System.out.println("El producto solicitado ya existe ");
         }
 
     }
@@ -68,7 +66,7 @@ public class StockManager
         }
 
     }
-    
+
     public Product findProduct(int id)
     {
         int index = 0;
@@ -86,7 +84,6 @@ public class StockManager
         return producto;
     }
 
-    
     public Product findProduct(String name){
         int index = 0;
         boolean  encontrado = false;
@@ -101,9 +98,9 @@ public class StockManager
         }
 
         return producto;
-    
+
     }
-    
+
     /**
      * Locate a product with the given ID, and return how
      * many of this item are in stock. If the ID does not
@@ -133,5 +130,5 @@ public class StockManager
         }
 
     }
-   
+
 }
